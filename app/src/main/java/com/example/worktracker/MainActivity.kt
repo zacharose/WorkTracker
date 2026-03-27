@@ -118,8 +118,7 @@ fun WorkTrackerScreen(jobDao: JobDao) {
                 OutlinedTextField(value = cost, onValueChange = { cost = it }, label = { Text("Cost ($)") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal), modifier = Modifier.fillMaxWidth())
                 Spacer(Modifier.height(12.dp))
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "Profit: ${\"%.2f\".format(profit)}", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = if (profit >= 0) Color(0xFF2E7D32) else Color(0xFFC62828))
-                    Button(onClick = { if (elapsedMillis > 0 || ticketValue > 0.0) { scope.launch { jobDao.insert(JobEntity(dateMillis = System.currentTimeMillis(), elapsedMillis = elapsedMillis, ticketTotal = ticketValue, cost = costValue)) }; running = false; startTime = 0L; elapsedMillis = 0L; ticketTotal = ""; cost = "" } }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2E7D32))) { Text("Save Job") }
+                        Text(text = "Profit: $${"%.2f".format(profit)}", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = if (profit >= 0) Color(0xFF2E7D32) else Color(0xFFC62828))                    Button(onClick = { if (elapsedMillis > 0 || ticketValue > 0.0) { scope.launch { jobDao.insert(JobEntity(dateMillis = System.currentTimeMillis(), elapsedMillis = elapsedMillis, ticketTotal = ticketValue, cost = costValue)) }; running = false; startTime = 0L; elapsedMillis = 0L; ticketTotal = ""; cost = "" } }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2E7D32))) { Text("Save Job") }
                 }
             }
         }
